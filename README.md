@@ -7,60 +7,77 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# CMS API
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+API e banco de dados para a aplicação CMS (**Content Management System**), construída com Laravel e Docker. Este projeto inclui a aplicação principal e um banco de dados PostgreSQL.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Pré-requisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Certifique-se de que você possui os seguintes softwares instalados em sua máquina:
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Configuração do Ambiente
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **Clone o repositório**  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+   Clone este repositório em sua máquina local:
+   
+   ```bash
+   git clone https://github.com/HitaloDev/CMS-API
+   ```
+   ```bash
+   cd cms-api
+   ```
+   
+2. **Configurar variáveis de ambiente**  
 
-## Laravel Sponsors
+   Copie o conteúdo do arquivo .env.example, crie um novo arquivo chamado .env e cole o conteúdo copiado nele.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+3. **Inicie os contêineres com Docker**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   No diretório raiz do projeto, execute:
 
-## Contributing
+   ```bash
+   docker compose up -d
+   ```
+   Este comando iniciará:
+    contêiner do Laravel.
+    contêiner do banco de dados PostgreSQL.
+    contêiner do Nginx.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+4. **Acesse o terminal do contêiner Laravel**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   Para executar comandos dentro do contêiner Laravel:
+   
+   ```bash
+   docker compose exec -it laravel bash
+   ```
 
-## Security Vulnerabilities
+6. **Instale as dependências do Composer**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   Dentro do contêiner Laravel, instale as dependências do projeto:
+   ```bash
+   composer install
+   ```
+   
+7. **Acesse a aplicação**
+   Abra o navegador e acesse:
+    ```bash
+   http://localhost:8000
+   ```
+    
+8. **Bônus**
+   As rotas e seus modelos de requisição estão em
+   ```bash
+   http://localhost:8000/api/documentation#/Posts
+   ```
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Estrutura do projeto**
+    laravel-app: Contêiner onde a aplicação Laravel é executada.
+    postgres: Contêiner do banco de dados PostgreSQL.
+    nginx: Servidor HTTP que serve a aplicação Laravel.
